@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './examples/main.js'
+    app: './examples/src/main.js'
   },
   output: {
     path: config.dev.assetsRoot,
@@ -42,7 +42,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath('img/[name].[hash:7].[ext]', 'devDist')
         }
       },
       {
@@ -50,7 +50,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+          name: utils.assetsPath('media/[name].[hash:7].[ext]', 'devDist')
         }
       },
       {
@@ -58,7 +58,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]', 'devDist')
         }
       }
     ]

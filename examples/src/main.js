@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './app'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
-import ContextMenu from '../src'
+import ContextMenu from '../../src'
 
 Vue.config.productionTip = false
 
