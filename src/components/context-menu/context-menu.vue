@@ -31,6 +31,7 @@
     width: 200px;
     box-shadow: 1px 1px .5px #bbb;
     margin: 0;
+    text-align: left;
 }
 
 </style>

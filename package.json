@@ -1,9 +1,9 @@
 {
-  "name": "vue-context-menu",
-  "version": "1.0.0",
+  "name": "vue2.x-context-menu",
+  "version": "1.0.2",
   "description": "vue-context-menu",
   "author": "wlt",
-  "private": true,
+  "public": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",

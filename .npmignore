@@ -1,0 +1,11 @@
+.*
+*.md
+*.yml
+.vscode
+assets/
+build/
+config/
+examples/
+node_modules/
+test/
+static/
