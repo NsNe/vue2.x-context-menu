@@ -21,6 +21,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   devtool: config.devDist.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.devDist.assetsRoot,
+    publicPath: config.devDist.assetsPublicPath,
     filename: utils.assetsPath('js/[name].[chunkhash].js', 'devDist'),
     chunkFilename: utils.assetsPath('js/[name].[chunkhash].chunk.js', 'devDist')
   },
