@@ -51,6 +51,11 @@ export default {
             },
             default: 'contextmenu'
         },
+        value: {
+            type: [Object, String],
+            default: '',
+            required: true
+        },
         content: {
             type: [String, Number],
             default: ''
@@ -80,6 +85,7 @@ export default {
         handleContextMenu() {
              event.preventDefault()
              this.visible = !this.visible
+             this.$emit('handle-show', this.value)
         },
         handleClose() {
             this.visible = false

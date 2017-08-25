@@ -2,10 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './app'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
 import ContextMenu from '../src'
 
 Vue.config.productionTip = false
 
+Vue.use(iView)
 Vue.use(ContextMenu)
 
 /* eslint-disable no-new */

@@ -1,12 +1,12 @@
 <template>
-    <li @click="handleClick(value)" :class="prefixCls + '-select-item'">
+    <li @click="handleClick(value)" :class="classes" class="disabled">
         <slot></slot>
         <span :style="styles">{{label}}</span>
     </li>
 </template>
 
 <style>
-.context-menu-select-item {
+.context-menu-item {
     margin: 0;
     line-height: normal;
     padding: 7px 16px;
@@ -18,8 +18,12 @@
     cursor: pointer;
     transition: background .2s ease-in-out;
 }
-.context-menu-select-item:hover {
+.context-menu-item:hover {
     background: #f3f3f3;
+}
+.context-menu-item-disabled {
+    color: #bbbec4;
+    cursor: not-allowed;
 }
 </style>
 
@@ -32,17 +36,21 @@ export default {
     name: 'ContextMenuItem',
     props: {
         label: {
-            type: String,
+            type: [String, Number],
             required: true
         },
         value: {
             type: [String, Number],
             required: true
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     methods: {
         handleClick: function(val) {
-            this.$emit('click', val)
+            this.disabled ? this.$emit('click', '') : this.$emit('click', val)
         }
     },
     computed: {
@@ -50,7 +58,15 @@ export default {
             let style = {}
             style.marginLeft = this.hasIcon ? '4px' : '0'
             return style
-        } 
+        },
+        classes() {
+            return [
+                `${prefixCls}-item`,
+                {
+                   [ `${prefixCls}-item-disabled`]: this.disabled
+                }
+            ] 
+        }
     },
     data(){
         return{
