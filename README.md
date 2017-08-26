@@ -131,9 +131,9 @@ event
 
 |事件名|说明|返回值|
 |---|---|---|
-|handle-show|鼠标右击时触发，返回点击的元素本身，即value值，此时可自己operate|点击元素value
+|handle-show|鼠标右击时触发，返回点击的元素本身，即value值，此时可自己清除operate|点击元素value
 
-### ContextMenu
+### ContextMenuItem
 props
 
 |属性|说明|类型|默认值|
@@ -143,6 +143,7 @@ props
 |disabled|是否禁用|Boolean|false|
 
 event
+
 |事件名|说明|返回值|
 |---|---|---|
 |click|点击某操作时触发,返回value属性||
