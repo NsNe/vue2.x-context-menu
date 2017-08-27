@@ -1,5 +1,6 @@
 <template>
   <div>
+
         <div>
             <h2>result</h2>
             <h4>
@@ -11,14 +12,11 @@
                 <span> {{operate}}
                 </span>
             </h4>
-
-
-
         </div>
         <br/>
         <div>
             <ContextMenu :value="{id: 1, name:'哈哈哈'}" @handle-show="handleShow">
-                <Button type="primary">哈哈哈</Button>
+                <div :style="{width: '1910px', height: '300px', backgroundColor: 'pink'}">哈哈哈</div>
                 <div slot="content">
                     <ContextMenuItem @click="handleSelect" label="哈哈哈1" value="哈哈哈1"><span>icon1</span></ContextMenuItem>
                     <ContextMenuItem @click="handleSelect" label="哈哈哈2" value="哈哈哈2"></ContextMenuItem>

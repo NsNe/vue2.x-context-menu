@@ -13,6 +13,10 @@
   "dependencies": {
     "vue": "^2.3.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NsNe/vue2.x-context-menu"
+  },
   "main": "dist/context-menu.js",
   "devDependencies": {
     "autoprefixer": "^7.1.2",

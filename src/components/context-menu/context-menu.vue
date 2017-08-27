@@ -1,12 +1,12 @@
 <template>
     <div v-clickoutside="handleClose" :class="[prefixCls, prefixCls + '-rel']">
-        <div @contextmenu="handleContextMenu" :class="prefixCls + '-rel'">
+        <div @contextmenu="handleContextMenu($event)" :class="prefixCls + '-rel'">
             <slot>
 
             </slot>
         </div>
         <transition name="fade">
-            <ul v-show="visible" @mouseup="handleClose" :class="prefixCls + '-content'" :style="styles">
+            <ul v-show="visible" @mouseup="handleClose" :class="prefixCls + '-content'" :style="styles" ref="menuContent">
                 <slot name="content">{{content}}</slot>
             </ul>
         </transition>
@@ -23,22 +23,22 @@
 }
 
 .context-menu-content {
-    position: absolute;
+    position: fixed;
     border: 1px solid #ececec;
     padding: 5px 0;
-    top: 0;
-    left: 100%;
     width: 200px;
     box-shadow: 1px 1px .5px #bbb;
     margin: 0;
     text-align: left;
+    background-color: #fff;
+    z-index: 100;
 }
 
 </style>
 
 
 <script>
-import {oneOf} from '@/utils'
+import {oneOf, getPosition} from '@/utils'
 import clickoutside from '@/directives/clickoutside'
 
 const prefixCls = 'context-menu';
@@ -70,28 +70,54 @@ export default {
     data() {
         return {
             prefixCls: prefixCls,
-            visible: false
+            visible: false,
+            stop: 0,
+            left: 0
         }
     },
     computed: {
         styles () {
-            let style = {};
-            if (this.width) {
-                style.width = `${this.width}px`;
+            return {
+                width: this.width,
+                top: (this.top || 0) + 'px',
+                left: (this.left || 0) + 'px' 
             }
-            return style;
         },
     },
     methods: {
-        handleContextMenu() {
+        handleContextMenu(event) {
              event.preventDefault()
-             this.visible = !this.visible
+             this.visible = true
+             this.setMenuPosition(event)
              this.$emit('handle-show', this.value)
         },
         handleClose() {
             this.visible = false
+        },
+        setMenuPosition(e) {
+            let clickCoords = getPosition(e)
+            const clickCoordsX = clickCoords.x
+            const clickCoordsY = clickCoords.y
+            this.left = clickCoordsX;
+            this.top = clickCoordsY;
+
+            const menu = this.$refs.menuContent;
+            const minHeight = (menu.style.minHeight || menu.style.height).replace('px', '') || 32;
+            const minWidth = (menu.style.minWidth || menu.style.width).replace('px', '') || 32;
+            const scrollHeight = menu.scrollHeight || minHeight;
+            const scrollWidth = menu.scrollWidth || minWidth;
+
+            const largestHeight = window.innerHeight - scrollHeight - 25;
+            const largestWidth = window.innerWidth - scrollWidth - 25;
+
+            if (this.top > largestHeight) {
+                (this.top = largestHeight)
+            }
+            if (this.left > largestWidth) {
+                (this.left = largestWidth)
+            }
+
         }
-       
     }
 
 }
