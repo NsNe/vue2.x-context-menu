@@ -9,13 +9,13 @@ export default {
             }
         }
         el.__vueClickOutside__ = documentHandler;
-        document.addEventListener('click', documentHandler);
+        document.addEventListener('mousedown', documentHandler);
     },
     update () {
 
     },
     unbind (el, binding) {
-        document.removeEventListener('click', el.__vueClickOutside__);
+        document.removeEventListener('mousedown', el.__vueClickOutside__);
         delete el.__vueClickOutside__;
     }
 };
