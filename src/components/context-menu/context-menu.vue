@@ -71,7 +71,7 @@ export default {
         return {
             prefixCls: prefixCls,
             visible: false,
-            stop: 0,
+            top: 0,
             left: 0
         }
     },
@@ -107,8 +107,8 @@ export default {
             const scrollHeight = menu.scrollHeight || minHeight;
             const scrollWidth = menu.scrollWidth || minWidth;
 
-            const largestY = window.innerHeight + window.scrollY - scrollHeight - 25;
-            const largestX = window.innerWidth + window.scrollX - scrollWidth - 25;
+            const largestY = window.innerHeight + window.scrollY - scrollHeight - 10;
+            const largestX = window.innerWidth + window.scrollX - scrollWidth - 10;
 
             clickCoordsX > largestX ? (this.left = largestX - window.scrollX) : (this.left = clickCoordsX - window.scrollX);
             clickCoordsY > largestY ? (this.top = largestY - window.scrollY) : (this.top = clickCoordsY - window.scrollY);  
