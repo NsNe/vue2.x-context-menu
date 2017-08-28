@@ -1,9 +1,9 @@
-import ContextMenu from './components/context-menu'
+import ContextMenu from './components/context-menu';
 
 const contextmenu = {
     ContextMenu,
     ContextMenuItem: ContextMenu.Item
-}
+};
 
 const install = function (Vue, opts = {}) {
 

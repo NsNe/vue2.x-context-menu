@@ -102,21 +102,16 @@ export default {
             this.top = clickCoordsY;
 
             const menu = this.$refs.menuContent;
-            const minHeight = (menu.style.minHeight || menu.style.height).replace('px', '') || 32;
-            const minWidth = (menu.style.minWidth || menu.style.width).replace('px', '') || 32;
+            const minHeight = (menu.style.minHeight || menu.style.height).replace('px', '') || 72;
+            const minWidth = (menu.style.minWidth || menu.style.width).replace('px', '') || 200;
             const scrollHeight = menu.scrollHeight || minHeight;
             const scrollWidth = menu.scrollWidth || minWidth;
 
-            const largestHeight = window.innerHeight - scrollHeight - 25;
-            const largestWidth = window.innerWidth - scrollWidth - 25;
+            const largestY = window.innerHeight + window.scrollY - scrollHeight - 25;
+            const largestX = window.innerWidth + window.scrollX - scrollWidth - 25;
 
-            if (this.top > largestHeight) {
-                (this.top = largestHeight)
-            }
-            if (this.left > largestWidth) {
-                (this.left = largestWidth)
-            }
-
+            clickCoordsX > largestX ? (this.left = largestX - window.scrollX) : (this.left = clickCoordsX - window.scrollX);
+            clickCoordsY > largestY ? (this.top = largestY - window.scrollY) : (this.top = clickCoordsY - window.scrollY);  
         }
     }
 

@@ -50,14 +50,14 @@ export default {
     },
     methods: {
         handleClick: function(val) {
-            this.disabled ? this.$emit('click', '') : this.$emit('click', val)
+            this.disabled ? this.$emit('click', '') : this.$emit('click', val);
         }
     },
     computed: {
         styles() {
-            let style = {}
-            style.marginLeft = this.hasIcon ? '4px' : '0'
-            return style
+            let style = {};
+            style.marginLeft = this.hasIcon ? '4px' : '0';
+            return style;
         },
         classes() {
             return [
@@ -75,7 +75,7 @@ export default {
         }
     },
     mounted() {
-        this.hasIcon = this.$slots.default != undefined
+        this.hasIcon = this.$slots.default != undefined;
     }
 
 }
