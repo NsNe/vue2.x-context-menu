@@ -6,7 +6,7 @@
             </slot>
         </div>
         <transition name="fade">
-            <ul v-show="visible" @mouseup="handleClose" :class="prefixCls + '-content'" :style="styles" ref="menuContent">
+            <ul v-show="visible" :class="prefixCls + '-content'" :style="styles" ref="menuContent">
                 <slot name="content">{{content}}</slot>
             </ul>
         </transition>
