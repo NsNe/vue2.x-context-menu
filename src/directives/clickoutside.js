@@ -7,6 +7,7 @@ export default {
             if (binding.expression) {
                 binding.value(e);
             }
+            console.log('===', el, e.target, el.contains(e.target));
         }
         el.__vueClickOutside__ = documentHandler;
         document.addEventListener('mouseup', documentHandler);
