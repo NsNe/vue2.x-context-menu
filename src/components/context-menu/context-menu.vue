@@ -6,7 +6,7 @@
             </slot>
         </div>
         <transition name="fade">
-            <ul v-show="visible" :class="prefixCls + '-content'" :style="styles" ref="menuContent">
+            <ul v-show="visible" @click="handleClose" :class="prefixCls + '-content'" :style="styles" ref="menuContent">
                 <slot name="content">{{content}}</slot>
             </ul>
         </transition>
@@ -38,8 +38,8 @@
 
 
 <script>
-import {oneOf, getPosition} from '@/utils'
-import clickoutside from '@/directives/clickoutside'
+import {oneOf, getPosition} from '@/utils';
+import clickoutside from '@/directives/clickoutside';
 
 const prefixCls = 'context-menu';
 
@@ -86,18 +86,18 @@ export default {
     },
     methods: {
         handleContextMenu(event) {
-             event.preventDefault()
-             this.visible = true
-             this.setMenuPosition(event)
-             this.$emit('handle-show', this.value)
+             event.preventDefault();
+             this.visible = true;
+             this.setMenuPosition(event);
+             this.$emit('handle-show', this.value);
         },
-        handleClose() {
-            this.visible = false
+        handleClose(flag) {
+            this.visible = false;
         },
         setMenuPosition(e) {
-            let clickCoords = getPosition(e)
-            const clickCoordsX = clickCoords.x
-            const clickCoordsY = clickCoords.y
+            let clickCoords = getPosition(e);
+            const clickCoordsX = clickCoords.x;
+            const clickCoordsY = clickCoords.y;
             this.left = clickCoordsX;
             this.top = clickCoordsY;
 
