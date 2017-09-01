@@ -37,7 +37,7 @@
 
         <div @contextmenu="$refs.contextMenu.handleContextMenu($event)" :style="{width: '1910px', height: '200px', backgroundColor: '#add8ad'}">哈哈哈</div>
 
-        <ContextMenu :value="{id: 1, name:'哈哈哈'}" @handle-show="handleShow" ref="contextMenu">
+        <ContextMenu @handle-show="handleShow" ref="contextMenu">
             <div>
                 <!-- 定义操作  -->
                 <ContextMenuItem @click="handleSelect" label="哈哈哈1" value="哈哈哈1"><Icon type="checkmark" /></ContextMenuItem>

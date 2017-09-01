@@ -13,7 +13,7 @@ yarn add vue2.x-context-menu
 
 ```
 
-## Usage
+## Usagehttps://nsne.github.io/vue2.x-context-menu/
 
 ### Usage1 (Global Component)
 ``` js
@@ -27,15 +27,32 @@ Vue.use(contextmenu);
 If you register it as a global component, you can use it directly in the template tag of any component of your project. like this:
 
 ```html
+    <table style="width: 100%; margin-bottom: 20px;" class="ivu-table">
+        <thead>
+            <th>name</th>
+            <th>sex</th>
+            <th>age</th>
+        </thead>
+        <tbody>
+            <tr @contextmenu="$refs.contextMenu.handleContextMenu($event, {name: 'aaa', sex: '男', age: 24})">
+                <td>aaa</td>
+                <td>男</td>
+                <td>23</td>
+            </tr>
+            <tr @contextmenu="$refs.contextMenu.handleContextMenu($event, {name: 'bbb', sex: '女', age: '23'})">
+                <td>bbb</td>
+                <td>女</td>
+                <td>23</td>
+            </tr>
+        </tbody>
+    </table>
+    <ContextMenu @handle-show="handleShow" ref="contextMenu">
         <div>
-            <ContextMenu :value="{id: 1, name:'哈哈哈'}" @handle-show="handleShow">
-                <Button type="primary">哈哈哈</Button>
-                <div slot="content">
-                    <ContextMenuItem @click="handleSelect" label="哈哈哈1" value="哈哈哈1"><span>icon1</span></ContextMenuItem>
-                    <ContextMenuItem @click="handleSelect" label="哈哈哈2" value="哈哈哈2"></ContextMenuItem>
-                </div>
-            </ContextMenu>
+            <!-- 定义操作  -->
+            <ContextMenuItem @click="handleSelect" label="哈哈哈1" value="哈哈哈1"><Icon type="checkmark" /></ContextMenuItem>
+            <ContextMenuItem @click="handleSelect" label="哈哈哈2" value="哈哈哈2"><Icon type="wifi" /></ContextMenuItem>
         </div>
+    </ContextMenu>
 ```
 
 
@@ -58,27 +75,46 @@ If you register it as a global component, you can use it directly in the templat
             </h4>
         </div>
         <br/>
-        <div>
-            <ContextMenu :value="{id: 1, name:'哈哈哈'}" @handle-show="handleShow">
-                <Button type="primary">哈哈哈</Button>
-                <div slot="content">
-                    <ContextMenuItem @click="handleSelect" label="哈哈哈1" value="哈哈哈1"><span>icon1</span></ContextMenuItem>
-                    <ContextMenuItem @click="handleSelect" label="哈哈哈2" value="哈哈哈2"></ContextMenuItem>
-                </div>
-            </ContextMenu>
-        </div>
-        <br/>
-        <div>
-            <ContextMenu :value="{id: 2, name:'呵呵呵'}" @handle-show="handleShow">
-                <Button type="info">呵呵呵</Button>
-                <div slot="content">
-                    <ContextMenuItem @click="handleSelect" label="呵呵呵1" value="呵呵呵1" disabled><span>icon2</span></ContextMenuItem>
-                    <ContextMenuItem @click="handleSelect" label="呵呵呵2" value="呵呵呵2"></ContextMenuItem>
-                </div>
-            </ContextMenu>
-        </div>
+        <table style="width: 100%; margin-bottom: 20px;">
+            <thead>
+                <th>name</th>
+                <th>sex</th>
+                <th>age</th>
+            </thead>
+            <tbody>
+                <tr @contextmenu="$refs.contextMenu.handleContextMenu($event, {name: 'aaa', sex: '男', age: 24})">
+                    <td>aaa</td>
+                    <td>男</td>
+                    <td>23</td>
+                </tr>
+                <tr @contextmenu="$refs.contextMenu.handleContextMenu($event, {name: 'bbb', sex: '女', age: '23'})">
+                    <td>bbb</td>
+                    <td>女</td>
+                    <td>23</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div @contextmenu="$refs.contextMenu.handleContextMenu($event)" :style="{width: '1910px', height: '200px', backgroundColor: 'pink', marginBottom: '20px'}">哈哈哈</div>
+
+        <div @contextmenu="$refs.contextMenu.handleContextMenu($event)" :style="{width: '1910px', height: '200px', backgroundColor: '#add8ad'}">哈哈哈</div>
+
+        <ContextMenu @handle-show="handleShow" ref="contextMenu">
+            <div>
+                <!-- 定义操作  -->
+                <ContextMenuItem @click="handleSelect" label="哈哈哈1" value="哈哈哈1"></ContextMenuItem>
+                <ContextMenuItem @click="handleSelect" label="哈哈哈2" value="哈哈哈2"></ContextMenuItem>
+            </div>
+        </ContextMenu>
+
   </div>
 </template>
+
+<style>
+tr {
+    cursor: pointer;
+}
+</style>
 
 <script>
 //only for local registration, if you register it as a global component, You do not have to do that
@@ -95,25 +131,19 @@ export default {
   },
   methods: {
       handleShow: function(val){
-          this.menu = val
-          this.operate = ''
-          console.log(this.menu)
+          this.menu = val;
+          this.operate = '';
+          console.log(this.menu);
       },
       handleSelect: function(val) {
-          this.operate = val
-          console.log(this.operate)
+          this.operate = val;
+          console.log(this.operate);
       }
-  },
-  //only for local registration, if you register it as a global component, You do not have to do that
-  components: {
-    ContextMenu,
-    ContextMenuItem
   }
-
 }
 
 </script>
-```
+
 
 ## API
 As you can see, there are two components, ContextMenu and ContextMenuItem
@@ -124,7 +154,6 @@ props
 
 |属性|说明|类型|默认值|
 |---|---|---|---|
-|value|鼠标右击的父元素|Object或String|''|
 |width|弹出窗口的宽度|String或Number|200|
 
 event
