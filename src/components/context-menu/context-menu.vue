@@ -1,16 +1,11 @@
 <template>
-    <div v-clickoutside="handleClose" :class="[prefixCls, prefixCls + '-rel']">
-        <div @contextmenu="handleContextMenu($event)" :class="prefixCls + '-rel'">
-            <slot>
-
-            </slot>
-        </div>
+    <div v-clickoutside="handleClose" :class="[prefixCls, prefixCls + '-rel']"> 
         <transition name="fade">
             <ul v-show="visible" @click="handleClose" :class="prefixCls + '-content'" :style="styles" ref="menuContent">
-                <slot name="content">{{content}}</slot>
+                <slot>{{content}}</slot>
             </ul>
         </transition>
-    </div>
+    </div> 
 </template>
 
 <style>
@@ -52,11 +47,6 @@ export default {
             },
             default: 'contextmenu'
         },
-        value: {
-            type: [Object, String],
-            default: '',
-            required: true
-        },
         content: {
             type: [String, Number],
             default: ''
@@ -85,11 +75,11 @@ export default {
         },
     },
     methods: {
-        handleContextMenu(event) {
+        handleContextMenu(event, menu) {
              event.preventDefault();
              this.visible = true;
              this.setMenuPosition(event);
-             this.$emit('handle-show', this.value);
+             this.$emit('handle-show', menu);
         },
         handleClose(flag) {
             this.visible = false;
