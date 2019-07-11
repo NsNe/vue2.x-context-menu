@@ -143,7 +143,7 @@ export default {
 }
 
 </script>
-
+```
 
 ## API
 As you can see, there are two components, ContextMenu and ContextMenuItem
@@ -152,27 +152,40 @@ As you can see, there are two components, ContextMenu and ContextMenuItem
 ### ContextMenu
 props
 
-|属性|说明|类型|默认值|
-|---|---|---|---|
-|width|弹出窗口的宽度|String或Number|200|
+
+
+
+
+| 属性  | 说明           | 类型           | 默认值 |
+| ----- | -------------- | -------------- | ------ |
+| width | 弹出窗口的宽度 | String或Number | 200    |
+
 
 event
 
-|事件名|说明|返回值|
-|---|---|---|
-|handle-show|鼠标右击时触发，返回点击的元素本身，即value值，此时可自己清除operate|点击元素value
+| 事件名      | 说明                                                                 | 返回值        |
+| ----------- | -------------------------------------------------------------------- | ------------- |
+| handle-show | 鼠标右击时触发，返回点击的元素本身，<br/>即value值，此时可自己清除operate | 点击元素value |
 
 ### ContextMenuItem
 props
 
-|属性|说明|类型|默认值|
-|---|---|---|---|
-|label|显示操作的标签|String或Number||
-|value|点击菜单时的识别key，如删除操作可为delete|String或Number||
-|disabled|是否禁用|Boolean|false|
+
+| 属性     | 说明                                      | 类型           | 默认值 |
+| -------- | ----------------------------------------- | -------------- | ------ |
+| label    | 显示操作的标签                            | String或Number |        |
+| value    | 点击菜单时的识别key，如删除操作可为delete | String或Number |        |
+| disabled | 是否禁用                                  | Boolean        | false  |
+
 
 event
 
-|事件名|说明|返回值|
-|---|---|---|
-|click|点击某操作时触发,返回value属性||
+
+
+| 事件名 | 说明                           | 返回值 |
+| ------ | ------------------------------ | ------ |
+| click  | 点击某操作时触发,返回value属性 |        |
+
+
+
+
