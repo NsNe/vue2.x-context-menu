@@ -97,11 +97,18 @@ export default {
             const scrollHeight = menu.scrollHeight || minHeight;
             const scrollWidth = menu.scrollWidth || minWidth;
 
-            const largestY = window.innerHeight + window.scrollY - scrollHeight - 10;
-            const largestX = window.innerWidth + window.scrollX - scrollWidth - 10;
+			// 为了跨浏览器兼容，使用 window.pageYOffset 代替 window.scrollY。另外，旧版本IE（<9）两个属性都不支持，必须使用其他的非标准属性
+			var supportPageOffset = window.pageXOffset !== undefined;
+			var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
 
-            clickCoordsX > largestX ? (this.left = largestX - window.scrollX) : (this.left = clickCoordsX - window.scrollX);
-            clickCoordsY > largestY ? (this.top = largestY - window.scrollY) : (this.top = clickCoordsY - window.scrollY);  
+			var scrollXTemp = supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft;
+			var scrollYTemp = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+
+            const largestY = window.innerHeight + scrollYTemp - scrollHeight - 10;
+            const largestX = window.innerWidth + scrollXTemp - scrollWidth - 10;
+
+            clickCoordsX > largestX ? (this.left = largestX - scrollXTemp) : (this.left = clickCoordsX - scrollXTemp);
+            clickCoordsY > largestY ? (this.top = largestY - scrollYTemp) : (this.top = clickCoordsY - scrollYTemp);   
         }
     }
 
